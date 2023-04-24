@@ -1,4 +1,4 @@
-package com.ums.web.services;
+package com.ums.web.services.interfaces;
 
 import com.ums.web.dto.StudentDTO;
 import com.ums.web.models.Student;
@@ -12,4 +12,5 @@ public interface StudentService {
     void updateStudent(StudentDTO student);
 
     void delete(Long studentId);
+    void assignSubject(Long studentId,Long subjectId);
 }

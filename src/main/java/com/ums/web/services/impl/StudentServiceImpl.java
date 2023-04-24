@@ -2,21 +2,26 @@ package com.ums.web.services.impl;
 
 import com.ums.web.dto.StudentDTO;
 import com.ums.web.models.Student;
+import com.ums.web.models.Subject;
 import com.ums.web.repositories.StudentRepository;
-import com.ums.web.services.StudentService;
+import com.ums.web.repositories.SubjectRepository;
+import com.ums.web.services.interfaces.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+    private final SubjectRepository subjectRepository;
 
     @Autowired
-    public StudentServiceImpl(StudentRepository studentRepository) {
+    public StudentServiceImpl(StudentRepository studentRepository, SubjectRepository subjectRepository) {
         this.studentRepository = studentRepository;
+        this.subjectRepository = subjectRepository;
     }
 
     public StudentDTO mapToStudentDTO(Student student) {
@@ -25,6 +30,7 @@ public class StudentServiceImpl implements StudentService {
                 .name(student.getName())
                 .surname(student.getSurname())
                 .albumId(student.getAlbumId())
+                .subjects(student.getSubjects())
                 .build();
     }
 
@@ -34,6 +40,7 @@ public class StudentServiceImpl implements StudentService {
                 .name(student.getName())
                 .surname(student.getSurname())
                 .albumId(student.getAlbumId())
+                .subjects(student.getSubjects())
                 .build();
     }
 
@@ -59,8 +66,21 @@ public class StudentServiceImpl implements StudentService {
         Student student = mapToStudent(studentDTO);
         studentRepository.save(student);
     }
+
     @Override
     public void delete(Long studentId) {
+        Student student = studentRepository.findById(studentId).get();
         studentRepository.deleteById(studentId);
+    }
+
+
+    @Override
+    public void assignSubject(Long studentId, Long subjectId) {
+        Student student = studentRepository.findById(studentId).get();
+        Subject subject = subjectRepository.findById(subjectId).get();
+        Set<Subject> subjects = student.getSubjects();
+        subjects.add(subject);
+        student.setSubjects(subjects);
+        studentRepository.save(student);
     }
 }

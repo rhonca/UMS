@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/master-layout">
+<body>
+<div layout:fragment="content">
+  <form th:action="@{/students/{studentId}/subjects/{subjectId}(studentId=${student.id})}" method="post">
+    <input type="hidden" name="studentId" th:value="${student.id}"/>
+    <label for="subjectId">Subject ID:</label>
+    <input type="text" id="subjectId" name="subjectId" required th:value="${subjectId}"/>
+    <button type="submit">Assign Subject</button>
+  </form>
+
+</div>
+</body>
+</html>

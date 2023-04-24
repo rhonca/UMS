@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/master-layout">
+<body>
+<div layout:fragment="content">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>AlbumId</th>
+            <th>Subjects</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.surname}"></td>
+            <td th:text="${student.albumId}"></td>
+            <td>
+                <ul>
+                    <li th:each="subject : ${student.subjects}" th:text="${subject.name}"></li>
+                </ul>
+            </td>
+            <td>
+                <a th:href="@{/students/{id}/edit(id=${student.id})}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form method="get" th:action="@{/students/new}">
+        <button type="submit">New</button>
+    </form>
+</div>
+</body>
+</html>
