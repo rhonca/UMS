@@ -4,20 +4,19 @@
       layout:decorate="layouts/master-layout">
 <head>
     <meta charset="UTF-8">
-    <title>Students edit</title>
+    <title>Student edit</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <form role="form" method="post" th:action="@{/students/{studentId}/edit(studentId=${student.id})}"
-          th:object="${student}">
+    <form role="form" method="post" th:action="@{/students/{studentId}/edit(studentId=${student.id})}" th:object="${student}">
         <input type="hidden" th:field="*{id}">
         <label for="Name">Name </label><input type="text" id="Name" th:field="*{name}"><br>
         <label for="Surname">Surname </label><input type="text" id="Surname" th:field="*{surname}"><br>
-        <label for="AlbumId">AlbumId </label><input type="text" id="AlbumId" th:field="*{albumId}"><br>
+        <label for="AlbumId">AlbumId </label><input type="text" id="AlbumId" th:field="*{albumNumber}"><br>
         <button type="submit">Edit</button>
     </form>
     <form method="get" th:action="@{/students/{studentId}/subjects(studentId=${student.id})}">
-        <button type="submit">Subjects</button>
+        <button type="submit">Assign subject</button>
     </form>
     <form method="get" th:action="@{/students/{id}/delete(id=${student.id})}">
         <button type="submit">Delete</button>

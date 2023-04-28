@@ -2,6 +2,10 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/master-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects</title>
+</head>
 <body>
 <div layout:fragment="content">
     <table border="1">
@@ -9,15 +13,15 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Edit</th>
+            <th>Details</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="subject : ${subjects}">
-            <td th:text="${subject.id}"></td>
-            <td th:text="${subject.name}"></td>
+            <td th:text="${subject.getId()}"></td>
+            <td th:text="${subject.getName()}"></td>
             <td>
-                <a th:href="@{/subjects/{id}/edit(id=${subject.id})}">Edit</a>
+                <a th:href="@{/subjects/{id}(id=${subject.getId()})}">Details</a>
             </td>
         </tr>
         </tbody>

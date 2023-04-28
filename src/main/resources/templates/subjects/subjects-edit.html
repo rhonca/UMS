@@ -2,12 +2,25 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/master-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject edit</title>
+</head>
 <body>
 <div layout:fragment="content">
     <form role="form" method="post" th:action="@{/subjects/{subjectId}/edit(subjectId=${subject.id})}"
           th:object="${subject}">
         <label for="Name">Name </label><input type="text" id="Name" th:field="*{name}"><br>
-        <button type="submit">Create</button>
+        <div>
+            <label for="teacher">Teacher</label>
+            <select id="teacher" name="teacher.id">
+                <option th:each="teacher : ${teachers}" th:value="${teacher.getId()}" th:text="${teacher}"></option>
+            </select>
+        </div>
+        <button type="submit">Edit</button>
+    </form>
+    <form method="get" th:action="@{/subjects/{id}/delete(id=${subject.getId()})}">
+        <button type="submit">Delete</button>
     </form>
 </div>
 </body>

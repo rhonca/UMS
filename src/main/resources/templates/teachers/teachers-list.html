@@ -4,7 +4,7 @@
       layout:decorate="layouts/master-layout">
 <head>
     <meta charset="UTF-8">
-    <title>Students</title>
+    <title>Teachers</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -14,23 +14,21 @@
             <th>ID</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>AlbumId</th>
             <th>Details</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="student : ${students}">
-            <td th:text="${student.getId()}"></td>
-            <td th:text="${student.getName()}"></td>
-            <td th:text="${student.getSurname()}"></td>
-            <td th:text="${student.getAlbumNumber()}"></td>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.getId()}"></td>
+            <td th:text="${teacher.getName()}"></td>
+            <td th:text="${teacher.getSurname()}"></td>
             <td>
-                <a th:href="@{/students/{id}(id=${student.id})}">Details</a>
+                <a th:href="@{/teachers/{id}(id=${teacher.getId()})}">Details</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <form method="get" th:action="@{/students/new}">
+    <form method="get" th:action="@{/teachers/new}">
         <button type="submit">New</button>
     </form>
 </div>

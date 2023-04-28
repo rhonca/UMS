@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/master-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher creator</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form role="form" method="post" th:action="@{/teachers/new}" th:object="${teacher}">
+        <label for="Name">Name </label><input type="text" id="Name" th:field="*{name}"><br>
+        <label for="Surname">Surname </label><input type="text" id="Surname" th:field="*{surname}"><br>
+        <button type="submit">Create</button>
+    </form>
+</div>
+</body>
+</html>

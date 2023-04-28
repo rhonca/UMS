@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/master-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Student details</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Student data</h1>
+    <div th:object="${subject}">
+        <label>Id:</label>
+        <span th:text="${subject.getId()}"></span><br>
+        <label>Name:</label>
+        <span th:text="${subject.getName()}"></span><br>
+        <label>Teacher:</label>
+        <span th:text="${subject.getTeacher()}"></span><br>
+        <label>Students:</label>
+        <ul style="list-style-position: inside">
+            <li th:each="student : ${subject.getStudents()}"
+                th:text="${student.getName()+ ' '+student.getSurname()}"></li>
+        </ul>
+    </div>
+    <form method="get" th:action="@{/subjects/{subjectId}/edit(subjectId=${subject.getId()})}">
+        <button type="submit">Edit</button>
+    </form>
+
+</div>
+</body>
+</html>

@@ -2,15 +2,24 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layouts/master-layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Assign subject</title>
+</head>
 <body>
 <div layout:fragment="content">
-  <form th:action="@{/students/{studentId}/subjects/{subjectId}(studentId=${student.id})}" method="post">
+  <form th:action="@{/students/{studentId}/subjects(studentId=${student.id})}" method="post">
     <input type="hidden" name="studentId" th:value="${student.id}"/>
-    <label for="subjectId">Subject ID:</label>
-    <input type="text" id="subjectId" name="subjectId" required th:value="${subjectId}"/>
+    <label for="subjectId">Subject:</label>
+    <select id="subjectId" name="subjectId" required>
+      <option value="">Select subject...</option>
+      <option th:each="subject : ${subjects}"
+              th:unless="${student.getSubjects().contains(subject)}"
+              th:value="${subject.getId()}"
+              th:text="${subject.getName()}">Subject Name</option>
+    </select>
     <button type="submit">Assign Subject</button>
   </form>
-
 </div>
 </body>
 </html>
