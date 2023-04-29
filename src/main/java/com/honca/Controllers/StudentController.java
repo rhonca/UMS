@@ -26,6 +26,11 @@ public class StudentController {
         this.subjectService = subjectService;
     }
 
+    @GetMapping("/login")
+    public String loginForm() {
+        return "/login";
+    }
+
     @GetMapping("/students")
     public String listStudents(Model model) {
         List<Student> students = studentService.findAllStudents();
@@ -78,7 +83,7 @@ public class StudentController {
         Student student = studentService.findStudentById(studentId);
         List<Subject> subjects = subjectService.findAllSubjects();
         model.addAttribute("student", student);
-        model.addAttribute("subjects",subjects);
+        model.addAttribute("subjects", subjects);
         return "students/students-subjects";
     }
 

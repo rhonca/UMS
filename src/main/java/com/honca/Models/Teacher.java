@@ -11,7 +11,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "teachers")
 public class Teacher {
@@ -24,8 +23,13 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     Set<Subject> subjects;
 
+    public Teacher(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     @Override
     public String toString() {
-        return name + " "+ surname;
+        return name + " " + surname;
     }
 }

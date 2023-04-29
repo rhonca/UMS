@@ -1,7 +1,6 @@
 package com.honca.Models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,6 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "subjects")
 public class Subject {
@@ -24,11 +22,10 @@ public class Subject {
     Set<Student> students;
 
     @ManyToOne
-    @JoinColumn(name="teacherId", nullable=false)
+    @JoinColumn(name = "teacherId")
     Teacher teacher;
 
     public Subject(Long id, String name) {
-        this.id = id;
         this.name = name;
         this.students = new HashSet<>();
     }
@@ -47,8 +44,8 @@ public class Subject {
     }
 
     @PreRemove
-    private void removeBookAssociations() {
-        for (Student student: this.students) {
+    private void removeSubjectAssociations() {
+        for (Student student : this.students) {
             student.getSubjects().remove(this);
         }
     }

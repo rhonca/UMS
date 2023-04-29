@@ -27,8 +27,8 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "subjectId")
     )
     Set<Subject> subjects;
-    public Student(Long id, String name) {
-        this.id = id;
+
+    public Student(String name) {
         this.name = name;
         this.subjects = new HashSet<>();
     }
@@ -45,6 +45,7 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id);
     }
+
     public void addSubject(Subject subject) {
         this.getSubjects().add(subject);
         subject.getStudents().add(this);
