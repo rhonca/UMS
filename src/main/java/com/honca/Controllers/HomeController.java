@@ -9,5 +9,9 @@ public class HomeController {
     public String homePage(){
         return "/home";
     }
+    @GetMapping("/logout")
+    public String logoutForm(){
+        return "logout";
+    }
 
 }

@@ -5,6 +5,9 @@
 <body>
 <div layout:fragment="content">
   <h1>Home page</h1>
+  <form method="get" th:action="@{/login}">
+    <button type="submit">Sign in</button>
+  </form>
 </div>
 </body>
 </html>
